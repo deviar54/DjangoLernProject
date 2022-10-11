@@ -8,12 +8,12 @@
   {% for item in news %}
   <div class="card mb-3">
     <div class="card-header">
-      Категория: {{ item.category }}
+      Категория: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
     </div>
     <div class="card-body">
       <h5 class="card-title">{{ item.title }}</h5>
-      <p class="card-text">{{ item.content }}</p>
-      <a href="#" class="btn btn-primary">Read more...</a>
+      <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
+      <a href="{{item.get_absolute_url}}" class="btn btn-primary">Read more...</a>
     </div>
     <div class="card-footer text-muted">
       {{ item.created_at|date:"Y-m-d H-i"}}
