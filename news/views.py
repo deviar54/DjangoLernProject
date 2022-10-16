@@ -1,8 +1,8 @@
-import re
-from django.shortcuts import render
 from django.http import HttpResponse
 from .models import News, Category
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import NewsForm
+
 
 
 def index(request):
@@ -32,4 +32,13 @@ def get_category(request, category_id):
     }
     return render(request, 'news/category.html', context = context)
 
-
+def add_news(request):
+    if request.method == 'POST':
+        form = NewsForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            News.objects.create(**form.cleaned_data)
+            return redirect('home')
+    else:
+        form = NewsForm()
+    return render(request, 'news/add_news.html', context={'form': form})
