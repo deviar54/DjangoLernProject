@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{ news_item.title }} :: {{ block.super }}
+{{ object.title }} :: {{ block.super }}
 {% endblock %}
 
 {% block sidebar %}
@@ -11,18 +11,18 @@
 {% block content %}
 <div class="card mb-3">
   <div class="card-header">
-    Категория: <a href="{{ news_item.category.get_absolute_url }}">{{ news_item.category }}</a>
+    Категория: <a href="{{ object.category.get_absolute_url }}">{{ object.category }}</a>
   </div>
   <div class="card-body">
     <div class="d-flex flex-row bd-highlight mb-3">
       {% if item.photo %}
-      <img src="{{ news_item.photo.url }}" alt="..." width="350" class="p-2 bd-highlight">
+      <img src="{{ object.photo.url }}" alt="..." width="350" class="p-2 bd-highlight">
       {% else %}
       <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="..." class="p-2 bd-highlight">
       {% endif %}
       <div class="p-2 bd-highlight">
-          <h5 class="card-title">{{ news_item.title }}</h5>
-          <p class="card-text">{{ news_item.content }}</p>
+          <h5 class="card-title">{{ object.title }}</h5>
+          <p class="card-text">{{ object.content }}</p>
           <a href="{{item.get_absolute_url}}" class="btn btn-primary">Read more...</a>
       </div>
     </div>
